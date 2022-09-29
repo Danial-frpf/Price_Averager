@@ -4,7 +4,7 @@ const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = {
     entry: {
-        popup: "./src/popup/popup.jsx",
+        popup: "./src/popup.jsx",
     },
     output: {
         path: path.resolve(__dirname, "dist"),
@@ -12,6 +12,7 @@ module.exports = {
     },
     module: {
         rules: [
+            // React Rules
             {
                 test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
@@ -22,13 +23,39 @@ module.exports = {
                     },
                 },
             },
+            // CSS and CSS modules rules
+            {
+                test: /\.css$/,
+                use: [
+                    "style-loader",
+                    {
+                        loader: "css-loader",
+                        options: {
+                            importLoaders: 1,
+                            modules: true,
+                        },
+                    },
+                ],
+                include: /\.module\.css$/,
+            },
+            {
+                test: /\.css$/,
+                use: ["style-loader", "css-loader"],
+                exclude: /\.module\.css$/,
+            },
         ],
     },
+    resolve: {
+        // Search for react components
+        extensions: ["", ".js", ".jsx"],
+    },
     plugins: [
+        // Adds html to built
         new HtmlWebpackPlugin({
-            template: "./src/popup/popup.html",
+            template: "./src/popup.html",
             filename: "popup.html",
         }),
+        // Copy all files in public folder to built as it is
         new CopyPlugin({
             patterns: [{ from: "public" }],
         }),
