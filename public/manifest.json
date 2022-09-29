@@ -1,0 +1,9 @@
+{
+    "name": "Price Averager",
+    "description": "Scraps amazon for average price of the searched product",
+    "version": "1.0",
+    "manifest_version": 3,
+    "action": {
+        "default_popup": "popup.html"
+      }
+}
