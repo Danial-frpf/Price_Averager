@@ -5,20 +5,23 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack --config webpack.prod.js",
-    "dev": "webpack --watch --config webpack.dev.js"
+    "dev": "webpack --watch --config webpack.dev.js",
+    "zip": "npm run build && bestzip price_averager.zip dist/*"
   },
   "keywords": [],
   "author": "Muhammad Danial",
   "license": "ISC",
   "dependencies": {
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "socket.io-client": "^4.5.2"
   },
   "devDependencies": {
     "@babel/core": "^7.19.3",
     "@babel/preset-env": "^7.19.3",
     "@babel/preset-react": "^7.18.6",
     "babel-loader": "^8.2.5",
+    "bestzip": "^2.2.1",
     "copy-webpack-plugin": "^11.0.0",
     "css-loader": "^6.7.1",
     "html-webpack-plugin": "^5.5.0",

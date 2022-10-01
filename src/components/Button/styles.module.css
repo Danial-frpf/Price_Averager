@@ -1,0 +1,16 @@
+.Button {
+    background-color: salmon;
+    border: 2px solid black;
+    border-radius: 8px;
+    padding: 4px 4px;
+    transition: scale 0.1s;
+}
+
+.Button:hover {
+    background-color: lightsalmon;
+}
+
+.Button:active {
+    background-color: lightblue;
+    scale: 0.95;
+}

@@ -1,0 +1,28 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    width: max-content;
+    padding: 16px 32px;
+    transition: all 0.1s;
+}
+
+.error {
+    color: red;
+}
+
+.center {
+    text-align: center;
+}
+
+a {
+    cursor: pointer;
+    color: lightseagreen;
+}
+
+li {
+    color: darkslategrey;
+}
