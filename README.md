@@ -7,13 +7,28 @@
 1. Download source code.
 2. Open terminal in folder containing package.json.
 3. Run command:
-   npm install
+
+```
+npm install
+```
+
 4. To get unpacked extension in dist folder run command:
-   npm run build
+
+```
+npm run build
+```
+
 5. To get packed extension (.zip file) run command:
-   npm run zip
+
+```
+npm run zip
+```
+
 6. For development run command:
-   npm run dev
+
+```
+npm run dev
+```
 
 ## Note
 
@@ -22,14 +37,19 @@
 
 ## Server
 
-Download the server source code using link.
-
-1. Download source code for server using link.
+1. Download source code for server using [link](https://github.com/Danial-frpf/price_averager_server).
 2. Open terminal in folder containing package.json.
 3. Run command:
-   (npm install)
+
+```
+npm install
+```
+
 4. Run command:
-   (npm run dev)
+
+```
+npm run dev
+```
 
 ## About
 
