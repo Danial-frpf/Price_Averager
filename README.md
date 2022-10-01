@@ -1,6 +1,6 @@
 ### Price Averager
 
-    Chrome extension that returns average price of amazon searches.
+Chrome extension that returns average price of amazon searches.
 
 ## Setup
 

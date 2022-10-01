@@ -15,7 +15,7 @@ const CustomSearch = () => {
     const { setPrice } = useContext(PriceContext);
 
     // Handlers
-    const handleButtonClick = async (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         if (value === "") {
@@ -40,30 +40,35 @@ const CustomSearch = () => {
     return (
         <div className={styles.container}>
             <h3 className="center">Make Custom Amazon Search</h3>
-            <input
-                type="text"
-                name="search"
-                id="search"
-                value={value}
-                onChange={handleInputChange}
-            />
-            <p className="error center">{error}</p>
-            {loading ? (
-                <>
-                    <Button text={"Processing..."} />
-                    <h4 className={styles.loadingMessage}>
-                        Might take few minutes
-                    </h4>
-                    <h4 className={styles.loadingMessage}>
-                        Close the popup to cancel
-                    </h4>
-                </>
-            ) : (
-                <Button
-                    text={"Calculate Average"}
-                    handleClick={handleButtonClick}
+            <form className={styles.container} onSubmit={handleSubmit}>
+                <input
+                    type="text"
+                    name="search"
+                    id="search"
+                    value={value}
+                    onChange={handleInputChange}
                 />
-            )}
+                <p className="error center">{error}</p>
+                {loading ? (
+                    <>
+                        <Button
+                            text={"Processing..."}
+                            handleClick={(e) => {
+                                e.preventDefault();
+                            }}
+                        />
+                        <h4 className={styles.loadingMessage}>
+                            Might take few minutes
+                        </h4>
+                        <h4 className={styles.loadingMessage}>
+                            Close the popup to cancel
+                        </h4>
+                    </>
+                ) : (
+                    <Button text={"Calculate Average"} />
+                )}
+            </form>
+
             <MaxPage />
         </div>
     );

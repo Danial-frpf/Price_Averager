@@ -3,7 +3,11 @@ import styles from "./styles.module.css";
 
 const Button = ({ text, handleClick }) => {
     return (
-        <button className={`${styles.Button}`} onClick={handleClick}>
+        <button
+            className={`${styles.Button}`}
+            onClick={handleClick}
+            type="submit"
+        >
             {text}
         </button>
     );

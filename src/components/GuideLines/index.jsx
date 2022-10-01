@@ -25,6 +25,13 @@ const GuideLines = () => {
                 <li className="error">
                     If there is "are you human" check the request fails.
                 </li>
+                <li className="error">
+                    For multi page mode internet connection must be fast else
+                    request will fail.
+                </li>
+                <li className="error">
+                    Multi page mode needs nodejs server to be running.
+                </li>
             </ul>
             <br />
             <h2 className="center">Modes</h2>

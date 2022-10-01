@@ -16,7 +16,7 @@ const MaxPage = ({}) => {
     // Handles
     const handleChange = (e) => {
         const maxPages = parseInt(e.target.value);
-        if (maxPages > 0) {
+        if (maxPages > 0 && maxPages < 100) {
             setValue(maxPages);
             chrome.storage.sync.set({ maxPages });
         }

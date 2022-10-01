@@ -9,6 +9,7 @@ export const SOCKET_AMAZON_AVG_PRICE = "average-price";
 
 // Server url
 export const SERVER_URL = "http://localhost:5000/";
+// const Heroku_URL = "https://priceaveragerserver.herokuapp.com/";
 
 // Amazon constants
 export const AMAZON_URL = "https://www.amazon.com/";
