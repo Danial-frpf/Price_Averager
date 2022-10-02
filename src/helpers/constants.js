@@ -4,6 +4,8 @@ export const PRICE_CHANGE_SIGNAL = "PriceAverage--ChangePrice";
 // Signals web sockets
 export const SOCKET_CONNECT = "connect";
 export const SOCKET_REFRESH = "refresh";
+export const SOCKET_ERROR = "connect_error";
+export const SOCKET_DISCONNECT = "disconnect";
 export const SOCKET_AMAZON_SEARCH = "amazon-search";
 export const SOCKET_AMAZON_AVG_PRICE = "average-price";
 

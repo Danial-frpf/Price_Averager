@@ -19,8 +19,11 @@ const multiModeSearch = async (
     // Signals web socket
     const SOCKET_CONNECT = "connect";
     const SOCKET_REFRESH = "refresh";
+    const SOCKET_ERROR = "connect_error";
+    const SOCKET_DISCONNECT = "disconnect";
     const SOCKET_AMAZON_SEARCH = "amazon-search";
     const SOCKET_AMAZON_AVG_PRICE = "average-price";
+    let intervalID;
 
     // Get search and maxPages
     const search = custom ? tab?.url : getSearchFromUrl(tab?.url);
@@ -30,10 +33,17 @@ const multiModeSearch = async (
         // Make a web socket connection
         const socket = io(SERVER_URL, { reconnectionAttempts: 3 });
 
-        socket.on("connect_error", (err) => {
+        // On network error notify and stop loading
+        socket.on(SOCKET_ERROR, () => {
             setError("Network error");
             setLoading(false);
             socket.disconnect();
+        });
+
+        // On disconnect stop loading and unmount refresh loop
+        socket.on(SOCKET_DISCONNECT, () => {
+            setLoading(false);
+            clearInterval(intervalID);
         });
 
         // Run this code on successful connection
@@ -42,11 +52,9 @@ const multiModeSearch = async (
             socket.emit(SOCKET_AMAZON_SEARCH, { search, maxPages });
 
             // Keep the connection alive
-            setInterval(
-                () =>
-                    socket.volatile.emit(SOCKET_REFRESH, "Connection refresh"),
-                10000
-            );
+            intervalID = setInterval(() => {
+                socket.volatile.emit(SOCKET_REFRESH, "Connection refresh");
+            }, 10000);
 
             // On response code
             socket.on(SOCKET_AMAZON_AVG_PRICE, (response) => {
@@ -62,8 +70,7 @@ const multiModeSearch = async (
                     setError(response.message);
                 }
 
-                // Stop loading and disconnect socket
-                setLoading(false);
+                // Disconnect socket
                 socket.disconnect();
             });
         });

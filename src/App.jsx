@@ -5,7 +5,10 @@ import getCurrentTab from "./helpers/getCurrentTab";
 import "./globals.css";
 import CustomSearch from "./components/CustomSearch";
 import GuideLines from "./components/GuideLines";
-import { AMAZON_URL_SEARCH_FILTER } from "./helpers/constants";
+import {
+    AMAZON_URL_SEARCH_FILTER,
+    PRICE_CHANGE_SIGNAL,
+} from "./helpers/constants";
 
 export const PriceContext = createContext(null);
 
@@ -18,6 +21,14 @@ const App = () => {
 
     // Effects
     useEffect(() => {
+        // Add listener for price change
+        chrome.runtime.onMessage.addListener((message) => {
+            if (message.signalType === PRICE_CHANGE_SIGNAL) {
+                setPrice(`${message.data}$`);
+                chrome.storage.sync.set({ averagePrice: `${message.data}$` });
+            }
+        });
+
         // Get current tab
         getCurrentTab(setTab);
     }, []);
